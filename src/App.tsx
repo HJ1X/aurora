@@ -1,6 +1,7 @@
 import "./App.css";
 import { Grid, GridItem, ResponsiveValue, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
+import GameGrid from "./components/GameGrid";
 
 enum gridAreas {
   navbar = "navbar",
@@ -29,7 +30,9 @@ function App() {
         <Show above="lg">
           <GridItem area={gridAreas.sidebar}>sidebar</GridItem>
         </Show>
-        <GridItem area={gridAreas.mainarea}>mainarea</GridItem>
+        <GridItem area={gridAreas.mainarea}>
+          <GameGrid />
+        </GridItem>
       </Grid>
     </>
   );
