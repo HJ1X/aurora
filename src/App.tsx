@@ -30,7 +30,7 @@ function App() {
         <Show above="lg">
           <GridItem area={gridAreas.sidebar}>sidebar</GridItem>
         </Show>
-        <GridItem area={gridAreas.mainarea}>
+        <GridItem area={gridAreas.mainarea} p={3}>
           <GameGrid />
         </GridItem>
       </Grid>
