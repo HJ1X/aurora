@@ -10,7 +10,7 @@ import {
 import { MdPhoneIphone } from "react-icons/md";
 import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
-import { HStack, Icon } from "@chakra-ui/react";
+import { HStack, Icon, Stack } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 
 interface PlatformIconsListProps {
@@ -34,12 +34,18 @@ const PlatformIconsList = ({
   type = "horizontal",
   platforms,
 }: PlatformIconsListProps) => {
-  return (
+  return type === "horizontal" ? (
     <HStack mt={1}>
       {platforms.map((platform) => (
         <Icon key={platform.id} as={iconMap[platform.slug]} color="gray.500" />
       ))}
     </HStack>
+  ) : (
+    <Stack mt={1}>
+      {platforms.map((platform) => (
+        <Icon key={platform.id} as={iconMap[platform.slug]} color="gray.500" />
+      ))}
+    </Stack>
   );
 };
 

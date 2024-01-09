@@ -23,7 +23,11 @@ const templateAreas: ResponsiveValue<string> = {
 function App() {
   return (
     <>
-      <Grid templateAreas={templateAreas} gap={1}>
+      <Grid
+        templateAreas={templateAreas}
+        gridTemplateColumns="15em 1fr"
+        gap={1}
+      >
         <GridItem area={gridAreas.navbar}>
           <NavBar />
         </GridItem>
