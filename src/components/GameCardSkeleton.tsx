@@ -1,14 +1,13 @@
-import { CardBody, Skeleton, SkeletonText } from "@chakra-ui/react";
-import GameCardContainer from "./GameCardContainer";
+import { Card, CardBody, Skeleton, SkeletonText } from "@chakra-ui/react";
 
 const GameCardSkeleton = () => {
   return (
-    <GameCardContainer>
+    <Card>
       <Skeleton height={200} />
       <CardBody>
         <SkeletonText />
       </CardBody>
-    </GameCardContainer>
+    </Card>
   );
 };
 
