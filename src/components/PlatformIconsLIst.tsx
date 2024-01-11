@@ -1,4 +1,4 @@
-import { Platform } from "../services/game-service";
+import { Platform } from "../services/http-service";
 import {
   FaWindows,
   FaPlaystation,

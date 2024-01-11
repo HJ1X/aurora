@@ -1,31 +1,11 @@
-import { useEffect, useState } from "react";
-import gameService, { Game } from "../services/game-service";
-import { CanceledError } from "axios";
+import httpService, { Game } from "../services/http-service";
+import useData from "./useData";
 
 const useGames = () => {
-  const [games, setGames] = useState<Game[]>([]);
-  const [error, setError] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    const { request, cancel } = gameService.getGamesList();
-
-    setIsLoading(true);
-    request
-      .then((res) => {
-        setGames(res.data.results);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        setError(err.message);
-        setIsLoading(false);
-      });
-
-    return () => cancel();
-  }, []);
-
-  return { games, error, isLoading };
+  const { data, error, isLoading } = useData<Game>({
+    dataFetcher: httpService.getGamesList.bind(httpService),
+  });
+  return { games: data, error, isLoading };
 };
 
 export default useGames;
