@@ -26,7 +26,7 @@ const GameGrid = ({ gameQuery, onChangeAvailableGameCount }: GameGridProps) => {
     );
 
   return (
-    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} spacing={5}>
+    <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
       {!isLoading
         ? games.map((game) => (
             <GameCardContainer key={game.id}>

@@ -8,7 +8,7 @@ const CriticScore = ({ score }: CriticScore) => {
   const color = score > 75 ? "green" : score > 60 ? "yellow" : "";
 
   return (
-    <Badge colorScheme={color} borderRadius={4} mr={1}>
+    <Badge colorScheme={color} borderRadius={4}>
       {score}
     </Badge>
   );

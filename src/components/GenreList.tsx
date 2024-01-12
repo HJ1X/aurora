@@ -57,6 +57,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
                     boxSize={"2.5em"}
                     borderRadius={"0.6em"}
                     src={getCroppedImageUrl(genre.image_background)}
+                    objectFit="cover"
                   />
                   <Text>{genre.name}</Text>
                 </HStack>
