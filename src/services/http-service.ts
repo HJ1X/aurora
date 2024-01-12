@@ -1,8 +1,9 @@
-import { AxiosResponse } from "axios";
+import { AxiosRequestConfig, AxiosResponse } from "axios";
 import apiClient from "./api-client";
 
 const GAMES_ENDPOINT = "/games";
 const GENRES_ENDPOINT = "/genres";
+const PLATFORMS_ENDPOINT = "/platforms/lists/parents";
 
 export interface Platform {
   id: number;
@@ -21,6 +22,7 @@ export interface Game {
 export interface Genre {
   id: number;
   name: string;
+  image_background: string;
 }
 
 interface FetchResponse<T> {
@@ -34,12 +36,13 @@ export interface DataResponse<T> {
 }
 
 class HTTPService {
-  private getData<T>(endpoint: string) {
+  private getData<T>(endpoint: string, requestConfig?: AxiosRequestConfig) {
     const controller = new AbortController();
 
     return {
       request: apiClient.get<FetchResponse<T>>(endpoint, {
         signal: controller.signal,
+        ...requestConfig,
       }),
       cancel: () => {
         controller.abort();
@@ -47,12 +50,16 @@ class HTTPService {
     };
   }
 
-  public getGamesList() {
-    return this.getData<Game>(GAMES_ENDPOINT);
+  public getGamesList(requestConfig?: AxiosRequestConfig) {
+    return this.getData<Game>(GAMES_ENDPOINT, requestConfig);
   }
 
-  public getGenresList() {
-    return this.getData<Genre>(GENRES_ENDPOINT);
+  public getGenresList(requestConfig?: AxiosRequestConfig) {
+    return this.getData<Genre>(GENRES_ENDPOINT, requestConfig);
+  }
+
+  public getPlatformsList(requestConfig?: AxiosRequestConfig) {
+    return this.getData<Platform>(PLATFORMS_ENDPOINT, requestConfig);
   }
 }
 
