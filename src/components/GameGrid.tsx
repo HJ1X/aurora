@@ -4,15 +4,21 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
 import { GameQuery } from "../App";
+import { useEffect } from "react";
 
 const skeletons = [1, 2, 3, 4, 5, 6];
 
 interface GameGridProps {
   gameQuery: GameQuery;
+  onChangeAvailableGameCount: (count?: number) => void;
 }
 
-const GameGrid = ({ gameQuery }: GameGridProps) => {
-  const { error, isLoading, games } = useGames(gameQuery);
+const GameGrid = ({ gameQuery, onChangeAvailableGameCount }: GameGridProps) => {
+  const { error, count, isLoading, games } = useGames(gameQuery);
+
+  useEffect(() => {
+    onChangeAvailableGameCount(count);
+  });
 
   if (error)
     return (

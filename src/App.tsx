@@ -1,6 +1,5 @@
 import "./App.css";
 import {
-  Box,
   Grid,
   GridItem,
   HStack,
@@ -14,11 +13,13 @@ import { useState } from "react";
 import { Genre, Platform } from "./services/http-service";
 import PlatformSelector from "./components/PlatformSelector";
 import SortSelector from "./components/SortSelector";
+import GameHeading from "./components/GameHeading";
 
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string;
+  searchText: string;
 }
 
 enum gridAreas {
@@ -40,6 +41,7 @@ const templateAreas: ResponsiveValue<string> = {
 
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+  const [availableGameCount, setAvailableGameCount] = useState<number>();
 
   return (
     <>
@@ -52,10 +54,15 @@ function App() {
         gap={1}
       >
         <GridItem area={gridAreas.navbar}>
-          <NavBar />
+          <NavBar
+            onSearch={(searchText) =>
+              setGameQuery({ ...gameQuery, searchText })
+            }
+            gameCount={availableGameCount}
+          />
         </GridItem>
         <Show above="lg">
-          <GridItem area={gridAreas.sidebar} px={3}>
+          <GridItem area={gridAreas.sidebar} pl={6} pr={3} pt={7}>
             <GenreList
               selectedGenre={gameQuery.genre}
               onSelectGenre={(genre) => setGameQuery({ ...gameQuery, genre })}
@@ -63,6 +70,7 @@ function App() {
           </GridItem>
         </Show>
         <GridItem area={gridAreas.mainarea} px={3}>
+          <GameHeading gameQuery={gameQuery} />
           <HStack spacing={3} mb={7}>
             <PlatformSelector
               selectedPlatform={gameQuery.platform}
@@ -77,7 +85,10 @@ function App() {
               }
             />
           </HStack>
-          <GameGrid gameQuery={gameQuery} />
+          <GameGrid
+            gameQuery={gameQuery}
+            onChangeAvailableGameCount={(count) => setAvailableGameCount(count)}
+          />
         </GridItem>
       </Grid>
     </>

@@ -22,6 +22,7 @@ const useData = <T>({
   dependencies,
 }: UseDataConfigObject<T>) => {
   const [data, setData] = useState<T[]>([]);
+  const [count, setCount] = useState<number>();
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -31,6 +32,7 @@ const useData = <T>({
       setIsLoading(true);
       request
         .then((res) => {
+          setCount(res.data.count);
           setData(res.data.results);
           setIsLoading(false);
         })
@@ -45,7 +47,7 @@ const useData = <T>({
     dependencies ? [...dependencies] : []
   );
 
-  return { data, error, isLoading };
+  return { data, count, error, isLoading };
 };
 
 export default useData;
