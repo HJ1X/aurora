@@ -1,19 +1,18 @@
-import httpService, { Game, Genre, Platform } from "../services/http-service";
+import { GameQuery } from "../App";
+import httpService, { Game } from "../services/http-service";
 import useData from "./useData";
 
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null
-) => {
+const useGames = (gameQuery: GameQuery) => {
   const { data, error, isLoading } = useData<Game>({
     dataFetcher: httpService.getGamesList.bind(httpService),
     requestConfig: {
       params: {
-        genres: selectedGenre?.id,
-        platforms: selectedPlatform?.id,
+        genres: gameQuery.genre?.id,
+        platforms: gameQuery.platform?.id,
+        ordering: gameQuery.sortOrder,
       },
     },
-    dependencies: [selectedGenre?.id, selectedPlatform?.id],
+    dependencies: [gameQuery],
   });
   return { games: data, error, isLoading };
 };
