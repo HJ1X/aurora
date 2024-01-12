@@ -1,19 +1,26 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
-import logo from "../assets/logo.jpg";
+import { Box, HStack, Image, Text, useColorMode } from "@chakra-ui/react";
+import LogoForDarkMode from "../assets/aurora-dark.svg";
+import LogoForLightMode from "../assets/aurora-light.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
+import SearchInput from "./SearchInput";
 
-const NAVBAR_HEIGHT = "3em";
+const NAVBAR_HEIGHT = "5em";
 
 const navbar = () => {
+  const { colorMode } = useColorMode();
+
   return (
-    <HStack p={3} justifyContent={"space-between"}>
-      <HStack className="left-content">
-        <Image borderRadius={"0.2em"} src={logo} boxSize={NAVBAR_HEIGHT} />
-        <Text>NavBar</Text>
-      </HStack>
-      <HStack className="right-content">
-        <ColorModeSwitch />
-      </HStack>
+    <HStack p={3}>
+      <Image
+        borderRadius={"0.2em"}
+        src={colorMode === "dark" ? LogoForDarkMode : LogoForLightMode}
+        boxSize={NAVBAR_HEIGHT}
+        px={3}
+      />
+      <Box style={{ width: "100%" }} mr={2}>
+        <SearchInput />
+      </Box>
+      <ColorModeSwitch />
     </HStack>
   );
 };
