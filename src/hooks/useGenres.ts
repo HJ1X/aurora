@@ -1,12 +1,13 @@
-import httpService, { Genre } from "../services/http-service";
-import useData from "./useData";
+import genres from "../data/genres";
 
 const useGenres = () => {
-  const { data, error, isLoading } = useData<Genre>({
-    dataFetcher: httpService.getGenresList.bind(httpService),
-  });
+  // NOTE: Commented out fetching genres from server.
+  // const { data, error, isLoading } = useData<Genre>({
+  //   dataFetcher: httpService.getGenresList.bind(httpService),
+  // });
 
-  return { genres: data, error, isLoading };
+  // Returning genres statically
+  return { genres: genres, error: null, isLoading: false };
 };
 
 export default useGenres;
