@@ -1,14 +1,14 @@
 import { AxiosRequestConfig } from "axios";
-import httpService from "./http-service";
 import { Game } from "../types";
+import APIClient from "./api-client";
 
 const GAMES_ENDPOINT = "/games";
 
+const apiClient = new APIClient<Game>(GAMES_ENDPOINT);
+
 class GameService {
   public getGames = (requestConfig: AxiosRequestConfig) =>
-    httpService
-      .getData<Game>(GAMES_ENDPOINT, requestConfig)
-      .then((res) => res.data);
+    apiClient.getData(requestConfig);
 }
 
 export default new GameService();

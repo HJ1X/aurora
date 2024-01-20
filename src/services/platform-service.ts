@@ -1,11 +1,12 @@
 import { Platform } from "../types";
-import httpService from "./http-service";
+import APIClient from "./api-client";
 
 const PLATFORMS_ENDPOINT = "/platforms/lists/parents";
 
+const apiClient = new APIClient<Platform>(PLATFORMS_ENDPOINT);
+
 class PlatformService {
-  public getPlatforms = () =>
-    httpService.getData<Platform>(PLATFORMS_ENDPOINT).then((res) => res.data);
+  public getPlatforms = () => apiClient.getData();
 }
 
 export default new PlatformService();
