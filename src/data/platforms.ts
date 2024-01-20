@@ -661,4 +661,5 @@ export default {
       ],
     },
   ],
+  next: null,
 };

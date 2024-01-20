@@ -876,4 +876,5 @@ export default {
       ],
     },
   ],
+  next: null,
 };

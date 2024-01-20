@@ -3,6 +3,7 @@ import axios, { AxiosRequestConfig } from "axios";
 interface FetchResponse<T> {
   count: number;
   results: Array<T>;
+  next: string | null;
 }
 
 const RAWG_API_KEY = "824eede8fe32431595a0b6b76b62855d";
