@@ -6,21 +6,14 @@ import {
   ResponsiveValue,
   Show,
 } from "@chakra-ui/react";
-import NavBar from "./components/NavBar";
-import GameGrid from "./components/GameGrid";
-import GenreList from "./components/GenreList";
+import NavBar from "../../components/NavBar";
+import GameGrid from "../../components/GameGrid";
+import GenreList from "../../components/GenreList";
 import { useState } from "react";
-import { Genre, Platform } from "./services/http-service";
-import PlatformSelector from "./components/PlatformSelector";
-import SortSelector from "./components/SortSelector";
-import GameHeading from "./components/GameHeading";
-
-export interface GameQuery {
-  genre: Genre | null;
-  platform: Platform | null;
-  sortOrder: string;
-  searchText: string;
-}
+import PlatformSelector from "../../components/PlatformSelector";
+import SortSelector from "../../components/SortSelector";
+import GameHeading from "../../components/GameHeading";
+import { GameQuery } from "../../types";
 
 enum gridAreas {
   navbar = "navbar",

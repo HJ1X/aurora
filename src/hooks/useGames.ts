@@ -1,21 +1,22 @@
-import { GameQuery } from "../App";
-import httpService, { Game } from "../services/http-service";
-import useData from "./useData";
+import { useQuery } from "@tanstack/react-query";
+import gameService from "../services/game-service";
+import { GameQuery } from "../types";
+
+const QUERY_KEY_GAME = ["games"];
 
 const useGames = (gameQuery: GameQuery) => {
-  const { data, count, error, isLoading } = useData<Game>({
-    dataFetcher: httpService.getGamesList.bind(httpService),
-    requestConfig: {
-      params: {
-        genres: gameQuery.genre?.id,
-        platforms: gameQuery.platform?.id,
-        ordering: gameQuery.sortOrder,
-        search: gameQuery.searchText,
-      },
-    },
-    dependencies: [gameQuery],
+  return useQuery({
+    queryKey: [...QUERY_KEY_GAME, gameQuery],
+    queryFn: () =>
+      gameService.getGames({
+        params: {
+          genres: gameQuery.genre?.id,
+          parent_platforms: gameQuery.platform?.id,
+          ordering: gameQuery.sortOrder,
+          search: gameQuery.searchText,
+        },
+      }),
   });
-  return { games: data, count, error, isLoading };
 };
 
 export default useGames;

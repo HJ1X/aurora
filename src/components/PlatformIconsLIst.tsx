@@ -1,4 +1,3 @@
-import { Platform } from "../services/http-service";
 import {
   FaWindows,
   FaPlaystation,
@@ -12,6 +11,7 @@ import { SiNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
 import { HStack, Icon, Stack } from "@chakra-ui/react";
 import { IconType } from "react-icons";
+import { Platform } from "../types";
 
 interface PlatformIconsListProps {
   type?: "horizontal" | "vertical";

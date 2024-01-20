@@ -1,13 +1,16 @@
+import { useQuery } from "@tanstack/react-query";
+import genreService from "../services/genre-service";
 import genres from "../data/genres";
 
-const useGenres = () => {
-  // NOTE: Commented out fetching genres from server.
-  // const { data, error, isLoading } = useData<Genre>({
-  //   dataFetcher: httpService.getGenresList.bind(httpService),
-  // });
+const QUERY_KEY_GENRE = ["genre"];
 
-  // Returning genres statically
-  return { genres: genres, error: null, isLoading: false };
+const useGenres = () => {
+  return useQuery({
+    queryKey: QUERY_KEY_GENRE,
+    queryFn: () => genreService.getGenres(),
+    staleTime: 24 * 60 * 60 * 1_000, // 24h
+    initialData: genres,
+  });
 };
 
 export default useGenres;

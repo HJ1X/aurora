@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
-import { Genre } from "../services/http-service";
+import { Genre } from "../types";
 
 interface GenreListProps {
   onSelectGenre: (genre: Genre) => void;
@@ -22,7 +22,7 @@ const skeletons = [1, 2, 3, 4, 5, 6];
 
 const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
   const { colorMode } = useColorMode();
-  const { genres, error, isLoading } = useGenres();
+  const { data: genres, error, isLoading } = useGenres();
 
   if (error) return null;
 
@@ -33,7 +33,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
       </Heading>
       <List spacing={2}>
         {!isLoading
-          ? genres.map((genre) => (
+          ? genres?.results.map((genre) => (
               <ListItem
                 _hover={{
                   backgroundColor:

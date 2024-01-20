@@ -1,16 +1,16 @@
-import httpService from "../services/http-service";
-import useData from "./useData";
+import { useQuery } from "@tanstack/react-query";
+import platformService from "../services/platform-service";
+import platforms from "../data/platforms";
+
+const QUERY_KEY_PLATFORMS = ["platforms"];
 
 const usePlatforms = () => {
-  const { data, error, isLoading } = useData({
-    dataFetcher: httpService.getPlatformsList.bind(httpService),
+  return useQuery({
+    queryKey: QUERY_KEY_PLATFORMS,
+    queryFn: () => platformService.getPlatforms(),
+    staleTime: 24 * 60 * 60 * 1_000, // 24h
+    initialData: platforms,
   });
-
-  return {
-    platforms: data,
-    error,
-    isLoading,
-  };
 };
 
 export default usePlatforms;

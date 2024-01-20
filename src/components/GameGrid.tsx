@@ -3,8 +3,8 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import GameCardContainer from "./GameCardContainer";
-import { GameQuery } from "../App";
 import { useEffect } from "react";
+import { GameQuery } from "../types";
 
 const skeletons = [1, 2, 3, 4, 5, 6];
 
@@ -14,10 +14,10 @@ interface GameGridProps {
 }
 
 const GameGrid = ({ gameQuery, onChangeAvailableGameCount }: GameGridProps) => {
-  const { error, count, isLoading, games } = useGames(gameQuery);
+  const { error, isLoading, data: games } = useGames(gameQuery);
 
   useEffect(() => {
-    onChangeAvailableGameCount(count);
+    if (games) onChangeAvailableGameCount(games.count);
   });
 
   if (error)
@@ -28,7 +28,7 @@ const GameGrid = ({ gameQuery, onChangeAvailableGameCount }: GameGridProps) => {
   return (
     <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6}>
       {!isLoading
-        ? games.map((game) => (
+        ? games?.results.map((game) => (
             <GameCardContainer key={game.id}>
               <GameCard game={game} />
             </GameCardContainer>
