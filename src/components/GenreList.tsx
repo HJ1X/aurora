@@ -15,12 +15,12 @@ import { Genre } from "../types";
 
 interface GenreListProps {
   onSelectGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenreId?: number;
 }
 
 const skeletons = [1, 2, 3, 4, 5, 6];
 
-const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
+const GenreList = ({ onSelectGenre, selectedGenreId }: GenreListProps) => {
   const { colorMode } = useColorMode();
   const { data: genres, error, isLoading } = useGenres();
 
@@ -42,7 +42,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: GenreListProps) => {
                       : theme.colors.gray[100],
                 }}
                 backgroundColor={
-                  genre.id === selectedGenre?.id
+                  genre.id === selectedGenreId
                     ? colorMode === "dark"
                       ? theme.colors.gray[600]
                       : theme.colors.gray[200]
