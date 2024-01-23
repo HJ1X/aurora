@@ -17,7 +17,11 @@ const GameHeading = () => {
   } Games`;
 
   return (
-    <Flex alignItems="baseline" mb={6}>
+    <Flex
+      flexDirection={{ base: "column", md: "row" }}
+      alignItems="baseline"
+      mb={6}
+    >
       <Heading fontSize="6xl" as="h1" mr={4}>
         {heading}
       </Heading>
