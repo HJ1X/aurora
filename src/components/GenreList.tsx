@@ -11,18 +11,16 @@ import {
 } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
 import getCroppedImageUrl from "../services/image-url";
-import { Genre } from "../types";
-
-interface GenreListProps {
-  onSelectGenre: (genre: Genre) => void;
-  selectedGenreId?: number;
-}
+import useGameQueryStore from "../store";
 
 const skeletons = [1, 2, 3, 4, 5, 6];
 
-const GenreList = ({ onSelectGenre, selectedGenreId }: GenreListProps) => {
+const GenreList = () => {
   const { colorMode } = useColorMode();
   const { data: genres, error, isLoading } = useGenres();
+
+  const selectedGenreId = useGameQueryStore((state) => state.gameQuery.genreId);
+  const setSelectedGenreId = useGameQueryStore((state) => state.setGenreId);
 
   if (error) return null;
 
@@ -50,7 +48,7 @@ const GenreList = ({ onSelectGenre, selectedGenreId }: GenreListProps) => {
                 }
                 borderRadius={"0.6em"}
                 key={genre.id}
-                onClick={() => onSelectGenre(genre)}
+                onClick={() => setSelectedGenreId(genre.id)}
               >
                 <HStack p={1}>
                   <Image

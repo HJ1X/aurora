@@ -7,19 +7,20 @@ import {
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
+import useGameQueryStore from "../store";
 
 interface SearchInputProps {
   gameCount?: number;
-  onSearch: (searchText: string) => void;
 }
 
-const SearchInput = ({ gameCount, onSearch }: SearchInputProps) => {
+const SearchInput = ({ gameCount }: SearchInputProps) => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const setSearchText = useGameQueryStore((state) => state.setSearchText);
 
   const handleSearch = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
     if (inputRef.current) {
-      onSearch(inputRef.current.value);
+      setSearchText(inputRef.current.value);
     }
   };
 

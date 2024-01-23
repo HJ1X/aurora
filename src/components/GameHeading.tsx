@@ -1,24 +1,32 @@
-import { Heading } from "@chakra-ui/react";
+import { Flex, Heading, theme } from "@chakra-ui/react";
 import useGenreId from "../hooks/useGenreId";
 import usePlatformId from "../hooks/usePlatformId";
-import { GameQuery } from "../types";
+import useGameQueryStore from "../store";
 
-interface GameHeadingProps {
-  gameQuery: GameQuery;
-}
+const GameHeading = () => {
+  const genreId = useGameQueryStore((state) => state.gameQuery.genreId);
+  const selectedGenre = useGenreId(genreId);
 
-const GameHeading = ({ gameQuery }: GameHeadingProps) => {
-  const selectedPlatform = usePlatformId(gameQuery.platformId);
-  const selectedGenre = useGenreId(gameQuery.genreId);
+  const platformId = useGameQueryStore((state) => state.gameQuery.platformId);
+  const selectedPlatform = usePlatformId(platformId);
+
+  const searchText = useGameQueryStore((state) => state.gameQuery.searchText);
 
   const heading = `${selectedPlatform?.name || ""} ${
     selectedGenre?.name || ""
   } Games`;
 
   return (
-    <Heading fontSize="6xl" as="h1" mb={6}>
-      {heading}
-    </Heading>
+    <Flex alignItems="baseline" mb={6}>
+      <Heading fontSize="6xl" as="h1" mr={4}>
+        {heading}
+      </Heading>
+      {searchText && (
+        <Heading fontSize="2xl" color={theme.colors.gray[400]} as="i">
+          Showing results for "{searchText}"
+        </Heading>
+      )}
+    </Flex>
   );
 };
 

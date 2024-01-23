@@ -6,12 +6,11 @@ import SearchInput from "./SearchInput";
 
 interface NavBarProps {
   gameCount?: number;
-  onSearch: (searchText: string) => void;
 }
 
 const NAVBAR_HEIGHT = "5em";
 
-const navbar = ({ gameCount, onSearch }: NavBarProps) => {
+const navbar = ({ gameCount }: NavBarProps) => {
   const { colorMode } = useColorMode();
 
   return (
@@ -23,7 +22,7 @@ const navbar = ({ gameCount, onSearch }: NavBarProps) => {
         px={3}
       />
       <Box style={{ width: "100%" }} mr={2}>
-        <SearchInput onSearch={onSearch} gameCount={gameCount} />
+        <SearchInput gameCount={gameCount} />
       </Box>
       <ColorModeSwitch />
     </HStack>
