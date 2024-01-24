@@ -1,6 +1,6 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import gameService from "../services/game-service";
-import useGameQueryStore from "../store";
+import { useGameQueryStore } from "../store";
 
 const QUERY_KEY_GAME = ["games"];
 

@@ -5,14 +5,12 @@ import useGames from "../hooks/useGames";
 import GameCard from "./GameCard";
 import GameCardContainer from "./GameCardContainer";
 import GameCardSkeleton from "./GameCardSkeleton";
+import { useAvailableGamesCountStore } from "../store";
 
+const errorString = "Some error occured. Please try again later";
 const skeletons = [1, 2, 3, 4, 5, 6];
 
-interface GameGridProps {
-  onChangeAvailableGameCount: (count?: number) => void;
-}
-
-const GameGrid = ({ onChangeAvailableGameCount }: GameGridProps) => {
+const GameGrid = () => {
   const {
     error,
     isLoading,
@@ -21,17 +19,19 @@ const GameGrid = ({ onChangeAvailableGameCount }: GameGridProps) => {
     fetchNextPage,
   } = useGames();
 
-  useEffect(() => {
-    if (games) onChangeAvailableGameCount(games.pages[0].count);
-  });
-
-  if (error)
-    return (
-      <Text fontSize="5xl">Some error occured. Please try again later</Text>
-    );
+  const setAvailableGamesCount = useAvailableGamesCountStore(
+    (state) => state.setCount
+  );
 
   const fetchedGamesCount =
     games?.pages.reduce((total, page) => total + page.results.length, 0) || 0;
+
+  useEffect(() => {
+    if (games) setAvailableGamesCount(games.pages[0].count);
+  });
+
+  // #region - JSX
+  if (error) <Text fontSize="5xl">{errorString}</Text>;
 
   return (
     <InfiniteScroll
@@ -59,6 +59,7 @@ const GameGrid = ({ onChangeAvailableGameCount }: GameGridProps) => {
       </SimpleGrid>
     </InfiniteScroll>
   );
+  // #endregion
 };
 
 export default GameGrid;

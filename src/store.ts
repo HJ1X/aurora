@@ -20,4 +20,13 @@ const useGameQueryStore = create<GameQueryStore>((set) => ({
     set((store) => ({ gameQuery: { ...store.gameQuery, sortOrder } })),
 }));
 
-export default useGameQueryStore;
+interface AvailableGamesCountStore {
+  count?: number;
+  setCount: (count: number) => void;
+}
+
+const useAvailableGamesCountStore = create<AvailableGamesCountStore>((set) => ({
+  setCount: (count) => set(() => ({ count: count })),
+}));
+
+export { useGameQueryStore, useAvailableGamesCountStore };

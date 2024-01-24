@@ -1,7 +1,7 @@
 import { Heading, Stack, theme } from "@chakra-ui/react";
 import useGenreId from "../hooks/useGenreId";
 import usePlatformId from "../hooks/usePlatformId";
-import useGameQueryStore from "../store";
+import { useGameQueryStore } from "../store";
 
 const GameHeading = () => {
   const genreId = useGameQueryStore((state) => state.gameQuery.genreId);
@@ -17,7 +17,7 @@ const GameHeading = () => {
   } Games`;
 
   return (
-    <Stack spacing={4} mb={6}>
+    <Stack spacing={2} mb={4}>
       <Heading fontSize="6xl" as="h1">
         {heading}
       </Heading>

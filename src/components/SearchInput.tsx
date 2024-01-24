@@ -7,15 +7,12 @@ import {
 } from "@chakra-ui/react";
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
-import useGameQueryStore from "../store";
+import { useAvailableGamesCountStore, useGameQueryStore } from "../store";
 
-interface SearchInputProps {
-  gameCount?: number;
-}
-
-const SearchInput = ({ gameCount }: SearchInputProps) => {
+const SearchInput = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const setSearchText = useGameQueryStore((state) => state.setSearchText);
+  const gameCount = useAvailableGamesCountStore((state) => state.count);
 
   const handleSearch = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();

@@ -1,26 +1,13 @@
-import {
-  Box,
-  HStack,
-  Image,
-  useBreakpoint,
-  useColorMode,
-} from "@chakra-ui/react";
+import { Box, HStack, Hide, Image, Show, useColorMode } from "@chakra-ui/react";
 import LogoForDarkMode from "../assets/aurora-dark.svg";
 import LogoForLightMode from "../assets/aurora-light.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
 
-interface NavBarProps {
-  gameCount?: number;
-}
-
 const NAVBAR_HEIGHT = "5em";
 
-const navbar = ({ gameCount }: NavBarProps) => {
+const navbar = () => {
   const { colorMode } = useColorMode();
-  const screenSize = useBreakpoint();
-
-  const isSmallDevice = screenSize === "sm" || screenSize === "base";
 
   return (
     <Box p={3}>
@@ -31,18 +18,18 @@ const navbar = ({ gameCount }: NavBarProps) => {
           boxSize={NAVBAR_HEIGHT}
           px={3}
         />
-        {!isSmallDevice && (
+        <Show above="md">
           <Box style={{ width: "100%" }} mr={2}>
-            <SearchInput gameCount={gameCount} />
+            <SearchInput />
           </Box>
-        )}
+        </Show>
         <ColorModeSwitch />
       </HStack>
-      {isSmallDevice && (
+      <Hide above="md">
         <Box style={{ width: "100%" }}>
-          <SearchInput gameCount={gameCount} />
+          <SearchInput />
         </Box>
-      )}
+      </Hide>
     </Box>
   );
 };
