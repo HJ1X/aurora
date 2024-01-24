@@ -1,4 +1,4 @@
-import { Flex, Heading, theme } from "@chakra-ui/react";
+import { Heading, Stack, theme } from "@chakra-ui/react";
 import useGenreId from "../hooks/useGenreId";
 import usePlatformId from "../hooks/usePlatformId";
 import useGameQueryStore from "../store";
@@ -17,12 +17,8 @@ const GameHeading = () => {
   } Games`;
 
   return (
-    <Flex
-      flexDirection={{ base: "column", md: "row" }}
-      alignItems="baseline"
-      mb={6}
-    >
-      <Heading fontSize="6xl" as="h1" mr={4}>
+    <Stack spacing={4} mb={6}>
+      <Heading fontSize="6xl" as="h1">
         {heading}
       </Heading>
       {searchText && (
@@ -30,7 +26,7 @@ const GameHeading = () => {
           Showing results for "{searchText}"
         </Heading>
       )}
-    </Flex>
+    </Stack>
   );
 };
 

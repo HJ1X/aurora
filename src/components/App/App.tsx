@@ -1,10 +1,4 @@
-import {
-  Grid,
-  GridItem,
-  HStack,
-  ResponsiveValue,
-  Show,
-} from "@chakra-ui/react";
+import { Grid, GridItem, ResponsiveValue, Show, Stack } from "@chakra-ui/react";
 import { useState } from "react";
 import GameGrid from "../../components/GameGrid";
 import GameHeading from "../../components/GameHeading";
@@ -55,10 +49,10 @@ function App() {
         </Show>
         <GridItem area={gridAreas.mainarea} px={6}>
           <GameHeading />
-          <HStack spacing={3} mb={7}>
+          <Stack direction={{ base: "column", sm: "row" }} spacing={3} mb={7}>
             <PlatformSelector />
             <SortSelector />
-          </HStack>
+          </Stack>
           <GameGrid
             onChangeAvailableGameCount={(count) => setAvailableGameCount(count)}
           />
