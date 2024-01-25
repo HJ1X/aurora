@@ -6,7 +6,7 @@ const PLATFORMS_ENDPOINT = "/platforms/lists/parents";
 const apiClient = new APIClient<Platform>(PLATFORMS_ENDPOINT);
 
 class PlatformService {
-  public getPlatforms = () => apiClient.getData();
+  public getPlatforms = () => apiClient.getAll();
 }
 
 export default new PlatformService();

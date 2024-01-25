@@ -16,16 +16,21 @@ const axiosInstance = axios.create({
   baseURL: BASE_URL,
 });
 
-class APIClient<T> {
+class APIClient<TGetAll, TGet> {
   private endpoint: string;
 
   constructor(endpoint: string) {
     this.endpoint = endpoint;
   }
 
-  getData = (requestConfig?: AxiosRequestConfig) =>
+  getAll = (requestConfig?: AxiosRequestConfig) =>
     axiosInstance
-      .get<FetchResponse<T>>(this.endpoint, requestConfig)
+      .get<FetchResponse<TGetAll>>(this.endpoint, requestConfig)
+      .then((res) => res.data);
+
+  get = (pathParam: string, requestConfig?: AxiosRequestConfig) =>
+    axiosInstance
+      .get<TGet>(`${this.endpoint}/${pathParam}`, requestConfig)
       .then((res) => res.data);
 }
 

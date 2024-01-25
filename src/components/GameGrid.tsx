@@ -31,7 +31,7 @@ const GameGrid = () => {
   });
 
   // #region - JSX
-  if (error) <Text fontSize="5xl">{errorString}</Text>;
+  if (error) return <Text fontSize="5xl">{errorString}</Text>;
 
   return (
     <InfiniteScroll
@@ -39,6 +39,9 @@ const GameGrid = () => {
       hasMore={hasNextPage}
       next={fetchNextPage}
       loader={<Spinner mb={5} />}
+      style={{
+        overflow: "visible",
+      }}
     >
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3, xl: 4 }} spacing={6} mb={5}>
         {!isLoading
@@ -52,7 +55,7 @@ const GameGrid = () => {
               </React.Fragment>
             ))
           : skeletons.map((skeleton) => (
-              <GameCardContainer key={skeleton}>
+              <GameCardContainer key={skeleton} hoverEffect={false}>
                 <GameCardSkeleton />
               </GameCardContainer>
             ))}

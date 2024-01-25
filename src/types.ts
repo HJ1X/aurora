@@ -7,8 +7,19 @@ export interface Platform {
 export interface Game {
   id: number;
   name: string;
+  slug: string;
   background_image: string;
   parent_platforms: Array<{ platform: Platform }>;
+  metacritic: number;
+}
+
+export interface GameDetails {
+  id: number;
+  name: string;
+  name_original: string;
+  description_raw: string;
+  slug: string;
+  background_image: string;
   metacritic: number;
 }
 

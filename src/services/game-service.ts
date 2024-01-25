@@ -1,14 +1,17 @@
 import { AxiosRequestConfig } from "axios";
-import { Game } from "../types";
+import { Game, GameDetails } from "../types";
 import APIClient from "./api-client";
 
 const GAMES_ENDPOINT = "/games";
 
-const apiClient = new APIClient<Game>(GAMES_ENDPOINT);
+const apiClient = new APIClient<Game, GameDetails>(GAMES_ENDPOINT);
 
 class GameService {
   public getGames = (requestConfig: AxiosRequestConfig) =>
-    apiClient.getData(requestConfig);
+    apiClient.getAll(requestConfig);
+
+  public getGameDetails = (gameSlug: string) =>
+    apiClient.get(gameSlug.toString());
 }
 
 export default new GameService();

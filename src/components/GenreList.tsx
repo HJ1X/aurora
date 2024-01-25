@@ -34,6 +34,7 @@ const GenreList = () => {
           ? genres?.results.map((genre) => (
               <ListItem
                 _hover={{
+                  cursor: "pointer",
                   backgroundColor:
                     colorMode === "dark"
                       ? theme.colors.gray[700]

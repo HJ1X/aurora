@@ -3,11 +3,13 @@ import LogoForDarkMode from "../assets/aurora-dark.svg";
 import LogoForLightMode from "../assets/aurora-light.svg";
 import ColorModeSwitch from "./ColorModeSwitch";
 import SearchInput from "./SearchInput";
+import { useNavigate } from "react-router-dom";
 
-const NAVBAR_HEIGHT = "5em";
+export const NAVBAR_HEIGHT = "5em";
 
 const navbar = () => {
   const { colorMode } = useColorMode();
+  const navigate = useNavigate();
 
   return (
     <Box p={3}>
@@ -17,6 +19,10 @@ const navbar = () => {
           src={colorMode === "dark" ? LogoForDarkMode : LogoForLightMode}
           boxSize={NAVBAR_HEIGHT}
           px={3}
+          onClick={() => navigate("/")}
+          _hover={{
+            cursor: "pointer",
+          }}
         />
         <Show above="md">
           <Box style={{ width: "100%" }} mr={2}>
