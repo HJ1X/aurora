@@ -2,6 +2,7 @@ import { AbsoluteCenter, Box, Heading, Spinner, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import useGameDetails from "../hooks/useGameDetails";
 import { NAVBAR_HEIGHT } from "../components/NavBar";
+import ExpandableText from "../components/ExpandableText";
 
 const GameDetailsPage = () => {
   const { gameSlug } = useParams();
@@ -23,7 +24,7 @@ const GameDetailsPage = () => {
   return (
     <Box p={5}>
       <Heading>{gameDetails?.name}</Heading>
-      <Text>{gameDetails?.description_raw}</Text>
+      <ExpandableText>{gameDetails?.description_raw}</ExpandableText>
     </Box>
   );
 };
