@@ -1,4 +1,4 @@
-import { AbsoluteCenter, Box, Heading, Spinner, Text } from "@chakra-ui/react";
+import { AbsoluteCenter, Box, Heading, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import useGameDetails from "../hooks/useGameDetails";
 import { NAVBAR_HEIGHT } from "../components/NavBar";

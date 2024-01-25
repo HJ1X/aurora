@@ -16,7 +16,7 @@ const axiosInstance = axios.create({
   baseURL: BASE_URL,
 });
 
-class APIClient<TGetAll, TGet> {
+class APIClient<TGetAll, TGet = TGetAll> {
   private endpoint: string;
 
   constructor(endpoint: string) {
