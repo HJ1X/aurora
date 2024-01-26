@@ -1,25 +1,29 @@
 import { useState } from "react";
-import { Button, Text } from "@chakra-ui/react";
+import { Button, Text, TextProps } from "@chakra-ui/react";
 
-interface ExpandableTextProps {
+interface ExpandableTextProps extends TextProps {
   children?: string;
   limit?: number;
 }
 
-const ExpandableText = ({ children, limit = 300 }: ExpandableTextProps) => {
+const ExpandableText = ({
+  children,
+  limit = 300,
+  ...textProps
+}: ExpandableTextProps) => {
   if (!children) return null;
 
   const [isExpanded, setIsExpanded] = useState(false);
 
   if (children.length <= limit) {
-    return <Text>{children}</Text>;
+    return <Text {...textProps}>{children}</Text>;
   }
 
   const summary = isExpanded ? children : children.substring(0, limit) + "...";
 
   return (
     <>
-      <Text>
+      <Text {...textProps}>
         {summary}
         <Button
           ml={2}

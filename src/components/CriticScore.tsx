@@ -1,10 +1,12 @@
 import { Badge } from "@chakra-ui/react";
 
 interface CriticScore {
-  score: number;
+  score?: number;
 }
 
 const CriticScore = ({ score }: CriticScore) => {
+  if (!score) return null;
+
   const color = score > 75 ? "green" : score > 60 ? "yellow" : "";
 
   return (

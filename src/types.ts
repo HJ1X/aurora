@@ -4,6 +4,12 @@ export interface Platform {
   slug: string;
 }
 
+export interface Publisher {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 export interface Game {
   id: number;
   name: string;
@@ -19,8 +25,11 @@ export interface GameDetails {
   name_original: string;
   description_raw: string;
   slug: string;
+  genres: Genre[];
   background_image: string;
+  parent_platforms: Array<{ platform: Platform }>;
   metacritic: number;
+  publishers: Publisher[];
 }
 
 export interface Genre {
@@ -34,4 +43,11 @@ export interface GameQuery {
   platformId?: number;
   sortOrder?: string;
   searchText?: string;
+}
+
+export interface Trailer {
+  id: number;
+  name: string;
+  preview: string;
+  data: { 480: string; max: string };
 }
