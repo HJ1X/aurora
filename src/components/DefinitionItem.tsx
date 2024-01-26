@@ -7,6 +7,8 @@ interface DefinitionItemProps {
 }
 
 const DefinitionItem = ({ children, term }: DefinitionItemProps) => {
+  if (!children) return null;
+
   return (
     <Box>
       <Heading as="dt" fontSize="md" color="gray.600">

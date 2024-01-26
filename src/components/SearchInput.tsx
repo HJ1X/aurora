@@ -8,16 +8,19 @@ import {
 import { useRef } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useAvailableGamesCountStore, useGameQueryStore } from "../store";
+import { useNavigate } from "react-router-dom";
 
 const SearchInput = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const setSearchText = useGameQueryStore((state) => state.setSearchText);
   const gameCount = useAvailableGamesCountStore((state) => state.count);
+  const navigate = useNavigate();
 
   const handleSearch = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
     if (inputRef.current) {
       setSearchText(inputRef.current.value);
+      navigate("/");
     }
   };
 
