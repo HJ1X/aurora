@@ -23,8 +23,10 @@ const axiosInstance = axios.create({
 });
 
 const joinPaths = (baseURL: string, pathParams?: string[]) => {
-  const joinedPathParams = pathParams ? pathParams.join(PATH_SEPARATOR) : "";
-  return baseURL + PATH_SEPARATOR + joinedPathParams;
+  const joinedPathParams = pathParams
+    ? PATH_SEPARATOR + pathParams.join(PATH_SEPARATOR)
+    : "";
+  return baseURL + joinedPathParams;
 };
 
 class APIClient<TGetAll, TGet = TGetAll> {
