@@ -1,4 +1,11 @@
-import { AbsoluteCenter, Box, Heading, Spinner } from "@chakra-ui/react";
+import {
+  AbsoluteCenter,
+  Box,
+  GridItem,
+  Heading,
+  SimpleGrid,
+  Spinner,
+} from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import useGameDetails from "../hooks/useGameDetails";
 import { NAVBAR_HEIGHT } from "../components/NavBar";
@@ -25,13 +32,19 @@ const GameDetailsPage = () => {
   if (error) throw error;
 
   return (
-    <Box p={5}>
-      <Heading>{gameDetails?.name}</Heading>
-      <ExpandableText mb={5}>{gameDetails?.description_raw}</ExpandableText>
-      <GameAttributes gameDetails={gameDetails} />
-      <GameTrailer gameId={gameDetails?.id} />
-      <GameScreenshots gameId={gameDetails?.id} />
-    </Box>
+    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5} p={5}>
+      <GridItem>
+        <Heading mb={3}>{gameDetails?.name}</Heading>
+        <ExpandableText mb={5}>{gameDetails?.description_raw}</ExpandableText>
+        <GameAttributes gameDetails={gameDetails} />
+      </GridItem>
+      <GridItem>
+        <Box mb={3}>
+          <GameTrailer gameId={gameDetails?.id} />
+        </Box>
+        <GameScreenshots gameId={gameDetails?.id} />
+      </GridItem>
+    </SimpleGrid>
   );
 };
 

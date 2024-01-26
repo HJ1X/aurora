@@ -12,14 +12,6 @@ const GameAttributes = ({ gameDetails }: GameAttributesProps) => {
 
   return (
     <SimpleGrid columns={2} spacing={5} as="dl">
-      <DefinitionItem term="Platforms">
-        {gameDetails.parent_platforms.map(({ platform }) => (
-          <Text key={platform.id}>{platform.name}</Text>
-        ))}
-      </DefinitionItem>
-      <DefinitionItem term="Metascore">
-        <CriticScore score={gameDetails.metacritic} />
-      </DefinitionItem>
       <DefinitionItem term="Genres">
         {gameDetails.genres.map((genre) => (
           <Text key={genre.id}>{genre.name}</Text>
@@ -29,6 +21,14 @@ const GameAttributes = ({ gameDetails }: GameAttributesProps) => {
         {gameDetails.publishers.map((publisher) => (
           <Text key={publisher.id}>{publisher.name}</Text>
         ))}
+      </DefinitionItem>
+      <DefinitionItem term="Platforms">
+        {gameDetails.parent_platforms.map(({ platform }) => (
+          <Text key={platform.id}>{platform.name}</Text>
+        ))}
+      </DefinitionItem>
+      <DefinitionItem term="Metascore">
+        <CriticScore score={gameDetails.metacritic} />
       </DefinitionItem>
     </SimpleGrid>
   );
