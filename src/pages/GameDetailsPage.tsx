@@ -5,6 +5,7 @@ import { NAVBAR_HEIGHT } from "../components/NavBar";
 import ExpandableText from "../components/ExpandableText";
 import GameAttributes from "../components/GameAttributes";
 import GameTrailer from "../components/GameTrailer";
+import GameScreenshots from "../components/GameScreenshots";
 
 const GameDetailsPage = () => {
   const { gameSlug } = useParams();
@@ -29,6 +30,7 @@ const GameDetailsPage = () => {
       <ExpandableText mb={5}>{gameDetails?.description_raw}</ExpandableText>
       <GameAttributes gameDetails={gameDetails} />
       <GameTrailer gameId={gameDetails?.id} />
+      <GameScreenshots gameId={gameDetails?.id} />
     </Box>
   );
 };

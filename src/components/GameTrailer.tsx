@@ -7,13 +7,13 @@ interface GameTrailerProps {
 const GameTrailer = ({ gameId }: GameTrailerProps) => {
   if (!gameId) return null;
 
-  const { data, error, isLoading } = useTrailers(gameId);
+  const { data: trailers, error, isLoading } = useTrailers(gameId);
 
   if (isLoading) return null;
 
   if (error) throw error;
 
-  const firstTrailer = data?.results[0];
+  const firstTrailer = trailers?.results[0];
 
   return (
     <video

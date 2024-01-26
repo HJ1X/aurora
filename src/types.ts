@@ -51,3 +51,10 @@ export interface Trailer {
   preview: string;
   data: { 480: string; max: string };
 }
+
+export interface Screenshot {
+  id: number;
+  image: string;
+  height: number;
+  width: number;
+}
