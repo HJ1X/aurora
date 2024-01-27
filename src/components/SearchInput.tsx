@@ -44,7 +44,7 @@ const SearchInput = () => {
           value={searchTextValue}
           onChange={(e) => setSearchTextValue(e.target.value)}
         />
-        <InputRightElement width={0} mr={1}>
+        <InputRightElement width="auto" mr={1}>
           {searchTextValue && (
             <Button onClick={handleReset} borderRadius={20} size="sm" mr={1}>
               Reset
