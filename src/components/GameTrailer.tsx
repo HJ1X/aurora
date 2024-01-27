@@ -15,10 +15,13 @@ const GameTrailer = ({ gameId }: GameTrailerProps) => {
 
   const firstTrailer = trailers?.results[0];
 
+  if (!firstTrailer?.data[480]) return null;
+
   return (
     <video
       src={firstTrailer?.data[480]}
       poster={firstTrailer?.preview}
+      width="100%"
       controls
     />
   );

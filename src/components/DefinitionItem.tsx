@@ -7,7 +7,9 @@ interface DefinitionItemProps {
 }
 
 const DefinitionItem = ({ children, term }: DefinitionItemProps) => {
-  if (!children) return null;
+  if (!children || children.toString() === "") return null;
+
+  console.log(children.toString());
 
   return (
     <Box>

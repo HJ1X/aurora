@@ -5,22 +5,29 @@ import {
   InputLeftElement,
   InputRightElement,
 } from "@chakra-ui/react";
-import { useRef } from "react";
+import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { useAvailableGamesCountStore, useGameQueryStore } from "../store";
 import { useNavigate } from "react-router-dom";
 
 const SearchInput = () => {
-  const inputRef = useRef<HTMLInputElement>(null);
+  const [searchTextValue, setSearchTextValue] = useState("");
   const setSearchText = useGameQueryStore((state) => state.setSearchText);
   const gameCount = useAvailableGamesCountStore((state) => state.count);
   const navigate = useNavigate();
 
   const handleSearch = (event: React.FormEvent<HTMLElement>) => {
     event.preventDefault();
-    if (inputRef.current) {
-      setSearchText(inputRef.current.value);
+    if (searchTextValue) {
+      setSearchText(searchTextValue);
       navigate("/");
+    }
+  };
+
+  const handleReset = () => {
+    if (searchTextValue) {
+      setSearchText("");
+      setSearchTextValue("");
     }
   };
 
@@ -34,9 +41,15 @@ const SearchInput = () => {
             gameCount ? `${gameCount.toLocaleString()} ` : ""
           }games`}
           variant="filled"
-          ref={inputRef}
+          value={searchTextValue}
+          onChange={(e) => setSearchTextValue(e.target.value)}
         />
-        <InputRightElement width={20}>
+        <InputRightElement width={0} mr={1}>
+          {searchTextValue && (
+            <Button onClick={handleReset} borderRadius={20} size="sm" mr={1}>
+              Reset
+            </Button>
+          )}
           <Button onClick={handleSearch} borderRadius={20} size="sm">
             Search
           </Button>

@@ -5,7 +5,7 @@ interface CriticScore {
 }
 
 const CriticScore = ({ score }: CriticScore) => {
-  if (!score) return null;
+  if (!score) return <Badge borderRadius={4}>N/A</Badge>;
 
   const color = score > 75 ? "green" : score > 60 ? "yellow" : "";
 
