@@ -1,30 +1,78 @@
-# React + TypeScript + Vite
+# Aurora
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<div id="user-content-toc">
+  <ul style="list-style: none;">
+    <summary>
+      <h2>Discover your new favorite game</h2>
+    </summary>
+  </ul>
+</div>
 
-Currently, two official plugins are available:
+Aurora is a powerful and intuitive game library that lets users search, explore, and filter games based on platforms, genres, and more. Whether you're looking for the latest releases or classic hits, Aurora makes discovering games **simple, fast, and fun**. 🚀  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Preview link - https://aurora-ruddy-nine.vercel.app/  
 
-## Expanding the ESLint configuration
+<br/>
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## 🌟 Features  
+✅ **Game Search** – Quickly find games by title, platform, or genre.  
+✅ **Advanced Filters** – Sort by **platforms, genres, ratings, and release date**.  
+✅ **Game Details** – View **trailers, descriptions, ratings, and screenshots**.  
+✅ **Modern UI** – Sleek, responsive design with **Chakra UI** and **Tailwind CSS**.  
+✅ **Lightning-Fast Performance** – Optimized search & filtering for smooth UX.  
+✅ **Dark & Light Mode** – Choose your preferred theme.  
 
-- Configure the top-level `parserOptions` property like this:
+<br/>
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+## 🛠 Tech Stack  
+**Frontend:**  
+- React  
+- Chakra UI
+- Tailwind CSS  
+
+**API & Data Fetching:**  
+- RAWG API
+
+**State Management:**  
+- React Query
+- Zustand  
+
+**Deployment:**  
+- Vercel  
+
+<br/>
+
+## ⚡ Setup Instructions  
+
+### 1️⃣ Clone the Repository  
+```bash
+git clone https://github.com/hj1x/aurora.git
+cd aurora
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### 2️⃣ Install Dependencies
+```bash
+npm install
+```
+
+### 3️⃣ Set Up Environment Variables
+Create a .env file and add your API key:
+```env
+VITE_RAWG_API_KEY=your-api-key
+```
+
+4️⃣ Start the Development Server
+```bash
+npm run dev
+```
+
+🚀 Open localhost:3000 and start exploring games!
+
+<br/>
+
+## 🤝 Contributing
+Want to improve Aurora? Feel free to fork the repo, submit issues, or open a pull request!
+
+<br/>
+
+⭐ Love Aurora? Give this repo a star and help spread the word! 🌟
